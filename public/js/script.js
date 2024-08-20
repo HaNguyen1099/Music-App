@@ -12,8 +12,7 @@ if (aplayer) {
         audio: [{
             name: dataSong.title,
             artist: dataSinger.fullName,
-            url: dataSong.audio,
-            cover: dataSong.avatar
+            url: dataSong.audio
         }],
         autoplay: true
     });
