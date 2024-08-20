@@ -69,3 +69,30 @@ export const detail = async (req: Request, res: Response) => {
         res.redirect("/topics")
     }
 }
+
+// [PATCH] /songs/like/:typeLike/:idSong
+export const like = async (req: Request, res: Response) => {
+    try {
+        const idSong: string = req.params.idSong 
+        const typeLike: string = req.params.typeLike
+
+        const song = await Song.findOne({
+            _id: idSong,
+            status: "active",
+            deleted: false
+        })
+
+        const newLike: number = typeLike == "like" ? song.like + 1 : song.like - 1
+
+        await Song.updateOne({_id: idSong}, {like: newLike})
+        // like: ["id_user1", "id_user2"]
+
+        res.json({
+            code: 200,
+            messgae: "Thành công!",
+            like: newLike
+        })
+    } catch (error) {
+        res.redirect("/topics")
+    }
+}
