@@ -13,8 +13,11 @@ router.get("/create", controller.create)
 
 router.post(
     "/create", 
-    upload.single("avatar"),
-    cloudinary.uploadSingle,
+    upload.fields([
+        { name: "avatar", maxCount: 1 },
+        { name: "audio", maxCount: 1 }
+    ]),
+    cloudinary.uploadFields,
     controller.createPost
 )
 
