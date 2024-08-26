@@ -17,7 +17,8 @@ if (aplayer) {
             cover: dataSong.avatar,
             lrc: dataSong.lyrics
         }],
-        autoplay: true
+        autoplay: true,
+        volume: 0.8
     });
 
     const avatar = document.querySelector(".singer-detail .inner-avatar")
